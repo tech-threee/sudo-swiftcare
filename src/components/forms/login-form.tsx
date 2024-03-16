@@ -47,7 +47,7 @@ export default function LoginForm() {
     });
 
     const loginUser = useMutation({
-        mutationFn: (values: z.infer<typeof formSchema>) => {
+        mutationFn: (values: z.infer<typeof formSchema>): any => {
             
 
             return LOGIN_USER(values);
@@ -93,7 +93,7 @@ export default function LoginForm() {
                     <div className="flex flex-col gap-2 text-sm text-center">
                         <h1 className="text-3xl text-center  font-medium">Login</h1>
                         <p className="text-neutral-500">
-                            Setup Management Console
+                            Sudo Management Console
                         </p>
                     </div>
                     <FormField

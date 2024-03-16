@@ -39,7 +39,7 @@ export const userColumns: ColumnDef<UserRes>[] = [
         cell: ({ row }) => (
             <div className="flex items-center gap-4">
                 <ViewUserDialog user={row.original} />
-                <DeleteUserDialog user={row.original} />
+                {/* <DeleteUserDialog user={row.original} /> */}
 
             </div>
         ),

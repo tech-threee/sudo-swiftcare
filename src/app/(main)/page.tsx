@@ -21,9 +21,9 @@ export default function Home() {
 
         />
         <DashboardCard
-          label="Total Posts"
-          value={20}
-          icon={dashBoardIconsMap.posts}
+          label="Total Patients"
+          value={2000}
+          icon={dashBoardIconsMap.patients}
           link="/blog"
 
         />

@@ -14,7 +14,7 @@ export const data = [
 
 export const options = {
     // title: "Staff Distribution",
-    colors: ["#4CAF50", "#34eb4f", "#94f2a1", "#08851a", "#04c920"],
+    colors: ["#710275", "#99059e", "#c808cf", "#f202fa", "#f176f5"],
 };
 
 export default function StaffChart() {

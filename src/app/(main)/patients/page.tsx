@@ -12,7 +12,7 @@ import CustomError from "@/components/core/custom-error";
 import CreateUserDialog from "@/components/dialogs/create-user-dialog";
 import { dummyStaff } from "@/utils/client";
 
-export default function StaffPage() {
+export default function PatientsPage() {
     const [user, setUser] = useLocalStorage<UserRes | null>("user", null);
     const { isPending, isError, data, error, isSuccess } = useQuery({
         queryKey: ['staff'],
