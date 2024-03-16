@@ -8,18 +8,15 @@ import _ from "lodash";
 import dayjs from 'dayjs';
 import localeData from 'dayjs/plugin/localeData';
 import ViewOnlyRichText from "../rich-text/view-only-rich-text";
+import { MessageRes } from "@/types";
 dayjs.extend(localeData);
 
-export default function MessageView() {
-    const [{ message }, dispatch] = useStateValue();
-    const { _id, createdAt, message: content, read, reciepient, replies, sender, title, updatedAt } = message;
+type Props = {
+    message: MessageRes | null;
+};
 
-    const [newMessage, setNewMessage] = useState(message.message);
+export default function MessageView({ message }: Props) {
 
-    useEffect(() => {
-        setNewMessage(content);
-    }, [content]);
-    // console.log({ newMessage });
 
 
     if (!message || Object.keys(message).length === 0) {
@@ -42,33 +39,36 @@ export default function MessageView() {
                 <div className="flex gap-2 items-center">
                     <UserAvatar
                         img=""
-                        name={`${sender.othernames} ${sender.surname}`}
+                        name={message?.sender.name || "N A"}
                         size="lg"
                     />
                     <div className="flex flex-col">
                         <p className="text-lg ">
-                            {`${sender.othernames} ${sender.surname}`}
+                            {message?.sender.name}
 
                         </p>
                         <p className="text-sm font-light">
-                            {sender.email}
+                            {message?.sender.email}
                         </p>
                     </div>
                 </div>
                 <div className="">
                     <p className="text-xs font-light text-neutral-600">
-                        {dayjs(createdAt).format("DD/MM/YYYY" + " hh:mm A")}
+                        {dayjs(message?.createdAt).format("DD/MM/YYYY" + " hh:mm A")}
 
                     </p>
                 </div>
             </div>
             <div className="flex flex-col gap-4">
                 <h4 className="mt-4 text-lg">
-                    {_.startCase(title)}
+                    {_.startCase(message?.title)}
                 </h4>
-                <ViewOnlyRichText
+                {/* <ViewOnlyRichText
                     letter={message.message}
-                />
+                /> */}
+                <p>
+                    {parseHtml(message.message)}
+                </p>
 
 
             </div>

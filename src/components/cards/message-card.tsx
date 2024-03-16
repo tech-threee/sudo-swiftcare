@@ -2,16 +2,23 @@ import { MessageRes } from "@/types";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import _ from "lodash";
 import { useStateValue } from "@/context/state-provider";
+import { Dispatch, SetStateAction } from "react";
 
-export default function MessageCard({ message }: { message: MessageRes; }) {
+type Props = {
+    message: MessageRes;
+    setMessage: Dispatch<SetStateAction<MessageRes | null>>;
+};
+
+export default function MessageCard({ message, setMessage }: Props) {
     const { _id, createdAt, message: content, read, reciepient, replies, sender, title, updatedAt } = message;
-    const [{ message: selectedMessage }, dispatch] = useStateValue()
-    
+    const [{ message: selectedMessage }, dispatch] = useStateValue();
+
     function selectMessage() {
         dispatch({
             type: "SET_MESSAGE",
             payload: message,
-        })
+        });
+        setMessage(message);
     }
 
     return (
@@ -29,7 +36,7 @@ export default function MessageCard({ message }: { message: MessageRes; }) {
                     </h4>
                 </div>
                 <p className="text-neutral-500 text-sm">
-                    {sender.othernames} {sender.surname} 
+                    {sender.name}
                 </p>
             </div>
             <div>

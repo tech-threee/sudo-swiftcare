@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function ViewUserDialog({ user }: Props) {
-    const { role, _id, createdAt, email, othernames, phone, surname } = user;
+    const { role, _id, createdAt, email, name, phone,  } = user;
     return (
             <Dialog>
                 <ActionTooltip label={`View ${_.capitalize(role)}`}>
@@ -32,8 +32,7 @@ export default function ViewUserDialog({ user }: Props) {
 
                     </DialogHeader>
                     <div className="w-full grid grid-cols-2 gap-4">
-                        <ViewItem label="othernames" value={othernames} />
-                        <ViewItem label="surname" value={surname} />
+                        <ViewItem label="full name" value={name} />
                         <ViewItem label="email" value={email} />
                         <ViewItem label="phone" value={phone} />
                         <ViewItem label="role" value={role} />

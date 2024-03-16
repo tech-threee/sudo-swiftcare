@@ -12,13 +12,13 @@ import DeleteUserDialog from "../dialogs/delete-user-dialog";
 
 export const userColumns: ColumnDef<UserRes>[] = [
     {
-        accessorKey: "othernames",
+        accessorKey: "name",
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="Full Name" />
         ),
         cell: ({ row }) => (
             <>
-                {row.original.othernames} {row.original.surname}
+                {row.original.name} 
             </>
         ),
     },

@@ -73,29 +73,37 @@ export type VerifyCodeInput = SendCodeInput & {
 
 
 
-export type UpdateUserDetailsInput = Pick<User, "surname" | "othernames" | "phone">;
+export type UpdateUserDetailsInput = Pick<User, "name" | "phone">;
 
 
 export type User = {
-    surname: string;
-    othernames: string;
+    name: string;
     email: string;
     sid: string;
     pin: string;
-    role: any;
+    role: UserRoles;
     token: string;
     phone: string;
+    dob: string;
+    specialty: string;
     isFirstLogin: boolean;
+    emergency_contacts: EmergencyContact[];
+    image: string;
 };
 
 export type UserRes = User & MongoResponse;
 
-
+export type EmergencyContact = {
+    name: string;
+    relationship: string;
+    phone: string;
+    email?: string;
+};
 
 
 export type Message = {
-    sender: Partial<Pick<UserRes, "email" | "othernames" | "phone" | "surname" | "_id">>;
-    reciepient: Partial<Pick<UserRes, "email" | "othernames" | "phone" | "surname" | "_id">>;
+    sender: Partial<Pick<UserRes, "email" | "phone" | "name" | "_id">>;
+    reciepient: Partial<Pick<UserRes, "email" | "phone" | "name" | "_id">>;
     message: string;
     read: boolean;
     title: string;

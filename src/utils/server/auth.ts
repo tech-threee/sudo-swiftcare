@@ -27,25 +27,21 @@ type VerifyCodeInput = SendCodeInput & {
 
 
 export const LOGIN_USER = async (info: LoginUserInput) => {
-    console.log(info)
-    setTimeout(() => {
-        return true
-    }, 3000)
-    // try {
-    //     const response: ApiResponse<UserRes> = await Axios({
-    //         method: "POST",
-    //         url: `/auth/login/staff`,
-    //         data: info
-    //     });
+    try {
+        const response: ApiResponse<UserRes> = await Axios({
+            method: "POST",
+            url: `/auth/staff`,
+            data: info
+        });
 
-    //     if (response.status === 200) {
-    //         return response.data.data;
-    //     } else {
-    //         throw new Error("oops");
-    //     }
-    // } catch (error) {
-    //     throw error;
-    // }
+        if (response.data.success) {
+            if (response.data.data.role === "SUDO") return response.data.data;
+        } else {
+            throw new Error("oops");
+        }
+    } catch (error) {
+        throw error;
+    }
 };
 
 export const RESET_PASSWORD = async (info: ResetPasswordInput) => {

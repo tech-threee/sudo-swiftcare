@@ -32,10 +32,8 @@ export const dashBoardIconsMap = {
    
 };
 
-
-export const dummyStaff: UserRes[] = Array.from({ length: 20 }, () => ({
-    othernames: faker.person.firstName(),
-    surname: faker.person.firstName(),
+export const dummyStaff: any = Array.from({ length: 20 }, () => ({
+    name: faker.person.fullName(),
     email: _.toLower(faker.internet.email()),
     _id: faker.database.mongodbObjectId(),
     createdAt: faker.date.anytime(),
@@ -50,14 +48,12 @@ export const dummyStaff: UserRes[] = Array.from({ length: 20 }, () => ({
 
 export const dummyMessages: MessageRes[] = Array.from({ length: 20 }, () => ({
     sender: {
-        othernames: faker.person.firstName(),
-        surname: faker.person.firstName(),
+        name: faker.person.fullName(),
         email: _.toLower(faker.internet.email()),
         _id: faker.database.mongodbObjectId(),
     },
     reciepient: {
-        othernames: faker.person.firstName(),
-        surname: faker.person.firstName(),
+        name: faker.person.fullName(),
         email: _.toLower(faker.internet.email()),
         _id: faker.database.mongodbObjectId(),
     },
@@ -65,7 +61,7 @@ export const dummyMessages: MessageRes[] = Array.from({ length: 20 }, () => ({
         min: 1,
         max: 5
     }, '<br/>\n'),
-    title: faker.lorem.words({min: 2, max: 7}),
+    title: faker.lorem.words({ min: 2, max: 7 }),
     _id: faker.database.mongodbObjectId(),
     createdAt: faker.date.anytime(),
     updatedAt: faker.date.anytime(),
@@ -92,7 +88,7 @@ export const dummyMessages: MessageRes[] = Array.from({ length: 20 }, () => ({
         replies: [],
 
     })),
-   
+
 }));
 
 
