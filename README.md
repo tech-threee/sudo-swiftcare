@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sudo Management Console
+This repository contains the console for the executive staff of the hospital like the Board of Directors, Chief Executive Officers and so on. This console is primarily for viewing employees, patients, managing leave schedules, viewing and managing payslips and viewing automated reports.
 
-## Getting Started
 
-First, run the development server:
+NB: For the first release of this software, the features currently available are
+- Viewing employees
+- Viewing patient details
+- Account authentication and management
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How To Access
+The software is hosted using Netlify using [this url](https://sudo-swiftcare.netlify.app)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How To Use 
+1. In order to get access to the application, one would have to login by providing a `Staff ID` and a `pin`
+![](/screenshots/login.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. After logging in, the user will see the Dashoard page which is a summary of the statistics of the system.
+![](/screenshots/dashboard.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. From there, they can visit the messages page to view in-app messages sent from other users of the application by using the navigation bar on the left hand side
 
-## Learn More
+4. The can visit the staff page to view details about the staff of the hospital
 
-To learn more about Next.js, take a look at the following resources:
+5. They can also visit the patients page to view relevant information about the patients that have registered onto the system
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The long-term goal of the software is to include features to allow the user view the leave schedules of emplyees, viewsystem generated reports and view relevant invoices made using the system for further enhance their management.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Stack
+This software was built using 
+1. [Next.js](https://nextjs.org/)
+2. [TailwindCSS](https://tailwindcss.org/)
+3. [Shadcn UI](https://ui.shadcn.com/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
