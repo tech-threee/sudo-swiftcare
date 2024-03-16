@@ -3,8 +3,8 @@ import Axios from "../axios"
 
 
 type LoginUserInput = {
-    email: string;
-    password: string;
+    sid: string;
+    pin: string;
 };
 
 export type ChangePasswordInput = {
@@ -17,7 +17,9 @@ type ResetPasswordInput = Pick<ChangePasswordInput, "newPassword"> & {
     email: string;
 };
 
-type SendCodeInput = Pick<LoginUserInput, "email">;
+type SendCodeInput = {
+    email: string
+};
 
 type VerifyCodeInput = SendCodeInput & {
     code: string;
@@ -32,7 +34,7 @@ export const LOGIN_USER = async (info: LoginUserInput) => {
     // try {
     //     const response: ApiResponse<UserRes> = await Axios({
     //         method: "POST",
-    //         url: `/auth/login`,
+    //         url: `/auth/login/staff`,
     //         data: info
     //     });
 

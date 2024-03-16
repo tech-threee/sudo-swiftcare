@@ -17,18 +17,16 @@ import { Loader2 } from "lucide-react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { LOGIN_USER } from "@/utils/server/auth";
-import { useLocalStorage } from 'react-use';
+import { useLocalStorage, useSessionStorage } from 'react-use';
 import { ForgotStoreType, } from '@/types';
 import Link from "next/link";
 
 
 const formSchema = z.object({
-    email: z.string().email({
-        message: "Please enter a valid email"
-    }).min(10, {
+    sid: z.string().min(10, {
         message: "Please enter more than 10 characters"
     }),
-    password: z.string().min(8, "Password should be more than 7 characters")
+    pin: z.string().min(3, "Pin should be more than 3 characters")
 });
 
 export default function LoginForm() {
@@ -43,19 +41,16 @@ export default function LoginForm() {
     const loginForm = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            email: "",
-            password: ""
+            sid: "",
+            pin: ""
         },
     });
 
     const loginUser = useMutation({
         mutationFn: (values: z.infer<typeof formSchema>) => {
-            const info = {
-                email: values.email,
-                password: values.password,
-            };
+            
 
-            return LOGIN_USER(info);
+            return LOGIN_USER(values);
         }
     });
 
@@ -98,16 +93,16 @@ export default function LoginForm() {
                     <div className="flex flex-col gap-2 text-sm text-center">
                         <h1 className="text-3xl text-center  font-medium">Login</h1>
                         <p className="text-neutral-500">
-                            Sudo Management Console
+                            Setup Management Console
                         </p>
                     </div>
                     <FormField
                         control={loginForm.control}
-                        name="email"
+                        name="sid"
                         render={({ field }) => (
                             <FormItem>
                                 <FormControl>
-                                    <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={loginUser.isPending} placeholder="Email" {...field} />
+                                    <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={loginUser.isPending} placeholder="Staff ID e.g. 1001001" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -115,7 +110,7 @@ export default function LoginForm() {
                     />
                     <FormField
                         control={loginForm.control}
-                        name="password"
+                        name="pin"
                         disabled={loginUser.isPending}
                         render={({ field }) => (
                             <FormItem>
@@ -136,7 +131,7 @@ export default function LoginForm() {
                     <div className="mt-4">
 
                         <Link href="/forgot-password" className="text-xs  text-core" >
-                            Forgot your password?
+                            Forgot your pin?
                         </Link>
                     </div>
                     <Button disabled={loginUser.isPending} variant="base" className=" w-full" type="submit">
