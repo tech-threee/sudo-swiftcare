@@ -32,3 +32,5 @@ This software was built using
 2. [TailwindCSS](https://tailwindcss.org/)
 3. [Shadcn UI](https://ui.shadcn.com/)
 
+## Design System
+Because this system is part of a software suite (SwiftCare Connec+), it shares the same design and components as the other consoles of the software suite however, the only different is that the primary color is purple - `#9C27B0`
