@@ -24,8 +24,7 @@ const phoneRegex = new RegExp(
 );
 
 const formSchema = z.object({
-    othernames: z.string().min(3, "Othername should be more than 3 characters"),
-    surname: z.string().min(3, "Surname should be more than 3 characters"),
+    name: z.string().min(3, "Othername should be more than 3 characters"),
     phone: z.string().regex(phoneRegex, 'Invalid Number!'),
 });
 
@@ -35,8 +34,7 @@ export default function UpdateUserForm() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            othernames: localUser?.othernames || "",
-            surname: localUser?.surname || "",
+            name: localUser?.name || "",
             phone: localUser?.phone || "",
         },
     });
@@ -93,7 +91,7 @@ export default function UpdateUserForm() {
             <form onSubmit={form.handleSubmit(onSubmit)} className=" max-w-lg w-full space-y-5  ">
                 <FormField
                     control={form.control}
-                    name="surname"
+                    name="name"
                     render={({ field }) => (
                         <FormItem>
                             <FormControl>
@@ -103,18 +101,7 @@ export default function UpdateUserForm() {
                         </FormItem>
                     )}
                 />
-                <FormField
-                    control={form.control}
-                    name="othernames"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormControl>
-                                <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Othernames" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+               
 
                 <FormField
                     control={form.control}
