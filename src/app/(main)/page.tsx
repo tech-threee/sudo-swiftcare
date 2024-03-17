@@ -41,7 +41,7 @@ export default function Home() {
       <section className="grid gap-4  w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <DashboardCard
           label="Total Staff"
-          value={data?.staff || 0}
+          value={data?.staff?.totalCount || 0}
           icon={dashBoardIconsMap.staff}
           link="/staff"
         />

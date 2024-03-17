@@ -3,7 +3,14 @@ import Axios from "../axios";
 import _ from "lodash";
 
 export type AllCounts = {
-    staff: number;
+    staff: {
+        totalCount: number
+        DOCTOR: number
+        SUDO: number
+        PHARMACIST: number
+        NURSE: number
+        IT: number
+    };
     bookings: number;
     communications: number;
     patients: number;
