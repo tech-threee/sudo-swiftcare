@@ -72,7 +72,7 @@ export const GET_USERS = async ( token: string) => {
 
         if (response.data.success) {
             console.log(response.data.data);
-            return response.data.data?.staff;
+            return response.data.data?.staff || [];
         } else {
             return [];
         }

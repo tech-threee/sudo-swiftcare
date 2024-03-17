@@ -1,6 +1,6 @@
 "use client";
 
-import { userColumns } from "@/components/table/colums";
+import { patientColumns, userColumns } from "@/components/table/colums";
 import { DataTable } from "@/components/table/data-table";
 import { Button } from "@/components/ui/button";
 import { useLocalStorage } from "react-use";
@@ -11,15 +11,16 @@ import { GET_USERS } from "@/utils/server/user";
 import CustomError from "@/components/core/custom-error";
 import CreateUserDialog from "@/components/dialogs/create-user-dialog";
 import { dummyStaff } from "@/utils/client";
+import { GET_PATIENTS } from "@/utils/server/patient";
 
 export default function PatientsPage() {
     const [user, setUser] = useLocalStorage<UserRes | null>("user", null);
     const { isPending, isError, data, error, isSuccess } = useQuery({
-        queryKey: ['staff'],
+        queryKey: ['patients'],
         queryFn: async () => {
             if (user && user.token) {
-                const staff = await GET_USERS(user.token);
-                return staff;
+                const patients = await GET_PATIENTS(user.token);
+                return patients;
             } else {
                 return []
             }
@@ -48,8 +49,8 @@ export default function PatientsPage() {
                         (isError || data === undefined) ? <CustomError /> :
                             <DataTable
                                 filterableCol="email"
-                                columns={userColumns}
-                            data={dummyStaff} title="staff" />
+                            columns={patientColumns}
+                            data={data || []} title="patients" />
                     }
                 </>
             </div>

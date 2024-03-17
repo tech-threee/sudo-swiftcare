@@ -95,6 +95,20 @@ export type User = {
     image: string;
 };
 
+export type Patient = {
+    name: string;
+    email: string;
+    pid: string;
+    pin: string;
+    role: UserRoles;
+    token: string;
+    phone: string;
+    dob: string;
+    image: string;
+}
+
+export type PatientRes = Patient & MongoResponse
+
 export type UserRes = User & MongoResponse;
 
 export type EmergencyContact = {
