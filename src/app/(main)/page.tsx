@@ -6,13 +6,19 @@ import { useQuery } from "@tanstack/react-query";
 import CustomError from "@/components/core/custom-error";
 import CustomLoader from "@/components/loaders/custom-loader";
 import { GET_ALL_COUNTS } from "@/utils/server/public";
+import { useLocalStorage } from "react-use";
+import { UserRes } from "@/types";
 
 export default function Home() {
+
+  const [user, setUser] = useLocalStorage<UserRes | null>("user", null);
   const { isPending, isError, data, error, isSuccess } = useQuery({
     queryKey: ['all-counts'],
     queryFn: async () => {
-      const rooms = await GET_ALL_COUNTS();
-      return rooms;
+      if (user && user.token) { 
+        const rooms = await GET_ALL_COUNTS(user.token);
+        return rooms;
+      }
 
     },
     retry: 3,
@@ -41,7 +47,7 @@ export default function Home() {
       <section className="grid gap-4  w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <DashboardCard
           label="Total Staff"
-          value={data?.staff?.totalCount || 0}
+          value={data?.staff?.Total || 0}
           icon={dashBoardIconsMap.staff}
           link="/staff"
         />

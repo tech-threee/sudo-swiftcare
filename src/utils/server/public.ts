@@ -4,7 +4,7 @@ import _ from "lodash";
 
 export type AllCounts = {
     staff: {
-        totalCount: number
+        Total: number
         DOCTOR: number
         SUDO: number
         PHARMACIST: number
@@ -17,14 +17,18 @@ export type AllCounts = {
 };
 
 
-export const GET_ALL_COUNTS = async () => {
+export const GET_ALL_COUNTS = async (token: string) => {
     try {
         const response: ApiResponse<AllCounts> = await Axios({
             method: "GET",
             url: `/public/`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         });
 
         if (response.data?.success) {
+            console.log(response.data.data)
             return response.data.data;
         } else {
             throw new Error(response?.data?.message);
