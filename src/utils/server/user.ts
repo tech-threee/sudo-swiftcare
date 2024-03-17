@@ -2,7 +2,7 @@ import { ApiResponse, ChangePasswordInput, LoginUserInput, ResetPasswordInput, S
 import Axios from "../axios";
 import _ from "lodash"
 
-type CreateUserInput = Pick<User, "email" | "othernames" | "surname" | "phone">
+type CreateUserInput = Pick<User, "email" | "dob" | "phone" | "name" | "role">
 
 export const rolesMap = {
     "IT": "it",
