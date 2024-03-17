@@ -3,7 +3,11 @@ import { rolesMap } from "@/utils/server/user";
 import { AxiosResponse } from "axios";
 
 
-
+export type Pagination = {
+    pageNumber: number;
+    pageSize: number;
+    totalCount: number;
+}
 
 type ActionTypes = keyof typeof actionTypes;
 

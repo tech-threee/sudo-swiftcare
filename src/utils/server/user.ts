@@ -1,8 +1,10 @@
-import { ApiResponse, ChangePasswordInput, LoginUserInput, ResetPasswordInput, SendCodeInput, UpdateUserDetailsInput, User, UserRes, UserRoles, VerifyCodeInput } from "@/types"
+import { ApiResponse, ChangePasswordInput, LoginUserInput, ResetPasswordInput, SendCodeInput, UpdateUserDetailsInput, User, UserRes, UserRoles, VerifyCodeInput, Pagination } from "@/types"
 import Axios from "../axios";
 import _ from "lodash"
 
-type CreateUserInput = Pick<User, "email" | "dob" | "phone" | "name" | "role">
+type CreateUserInput = Pick<User, "email" | "dob" | "phone" | "name"> & {
+    role: string;
+}
 
 export const rolesMap = {
     "IT": "it",
@@ -24,10 +26,10 @@ export const CREATE_USER = async (info: CreateUserInput,  token: string) => {
             }
         });
 
-        if (response.status === 200 || response.status === 201) {
+        if (response.data?.success) {
             return response.data.data;
         } else {
-            throw new Error("oops");
+            throw new Error(response?.data?.message);
         }
     } catch (error) {
         throw error;
@@ -56,9 +58,11 @@ export const GET_USER_BY_ID = async (id: string, role: UserRoles, token: string)
 };
 
 export const GET_USERS = async ( token: string) => {
-
     try {
-        const response: ApiResponse<UserRes[]> = await Axios({
+        const response: ApiResponse<{
+            pagination: Pagination;
+            staff: UserRes[];
+        }> = await Axios({
             method: "GET",
             url: `/staff/`,
             headers: {
@@ -66,10 +70,11 @@ export const GET_USERS = async ( token: string) => {
             }
         });
 
-        if (response.status === 200) {
-            return response.data.data;
+        if (response.data.success) {
+            console.log(response.data.data);
+            return response.data.data?.staff;
         } else {
-            return []
+            return [];
         }
     } catch (error) {
         throw error;

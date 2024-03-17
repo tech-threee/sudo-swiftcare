@@ -52,7 +52,7 @@ export default function CreateUserForm() {
             email: "",
             name: "",
             phone: "",
-            role: "",
+            role: "SUDO",
             dob: "",
         },
     });
@@ -160,43 +160,8 @@ export default function CreateUserForm() {
                         </FormItem>
                     )}
                 />
-                <FormField
-                    control={form.control}
-                    name="sid"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormControl>
-                                <Input className="text-black outline-0 focus:ring-0 focus-visible:ring-offset-0 " disabled={false} placeholder="Staff ID" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="role"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Role</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select a role" />
-                                    </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                   
-                                    <SelectItem value="DOCTOR">DOCTOR</SelectItem>
-                                    <SelectItem value="IT">IT</SelectItem>
-                                    <SelectItem value="PHARMACIST">PHARMACIST</SelectItem>
-                                    <SelectItem value="NURSE">NURSE</SelectItem>
-                                </SelectContent>
-                            </Select>
-                           
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+               
+                
 
 
 

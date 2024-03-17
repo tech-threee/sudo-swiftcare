@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function ViewUserDialog({ user }: Props) {
-    const { role, _id, createdAt, email, name, phone,  } = user;
+    const { role, _id, createdAt, email, name, phone, specialty, dob } = user;
     return (
             <Dialog>
                 <ActionTooltip label={`View ${_.capitalize(role)}`}>
@@ -35,7 +35,9 @@ export default function ViewUserDialog({ user }: Props) {
                         <ViewItem label="full name" value={name} />
                         <ViewItem label="email" value={email} />
                         <ViewItem label="phone" value={phone} />
+                        <ViewItem label="date of birth" value={dob || "N/A"} />
                         <ViewItem label="role" value={role} />
+                        <ViewItem label="specialty" value={specialty || "N/A"} />
                         <div className="col-span-2">
                             <ViewItem label="Created At" value={format(new Date(createdAt), "PPPP")} />
 

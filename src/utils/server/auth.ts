@@ -37,7 +37,7 @@ export const LOGIN_USER = async (info: LoginUserInput) => {
         });
 
         if (response.data.success) {
-            if (response.data.data.role === "IT") {
+            if (response.data.data.role === "SUDO") {
                 if (!!response.data.data.token) {
                     axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.data.token}`;
                 }

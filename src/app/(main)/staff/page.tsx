@@ -42,14 +42,16 @@ export default function StaffPage() {
 
 
     return (
-            <div className="h-full">
+        <div className="h-full">
+            <CreateUserDialog />
+
                 <>
                     {
                         (isError || data === undefined) ? <CustomError /> :
                             <DataTable
                                 filterableCol="email"
                                 columns={userColumns}
-                            data={dummyStaff} title="staff" />
+                            data={data || []} title="staff" />
                     }
                 </>
             </div>

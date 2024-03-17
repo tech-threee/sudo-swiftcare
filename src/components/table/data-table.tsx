@@ -43,7 +43,7 @@ export function DataTable<TData, TValue>({
   );
 
   function reloadPage() {
-    
+    location.reload();
   }
 
   const table = useReactTable({
