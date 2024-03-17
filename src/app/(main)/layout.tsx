@@ -5,7 +5,7 @@ import { Children } from "@/types";
 
 export default function MainLayout({ children }: Children) {
     return (
-        // <AuthProvider>
+        <AuthProvider>
             <main className='w-full h-screen flex max-h-screen max-w-screen'>
                 <Sidebar />
                 <section className='w-full h-full max-h-screen p-8 overflow-hidden'>
@@ -13,6 +13,6 @@ export default function MainLayout({ children }: Children) {
                     {children}
                 </section>
             </main>
-        // </AuthProvider>
+     </AuthProvider>
     );
 }

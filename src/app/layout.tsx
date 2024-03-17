@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import "./globals.css";
-import { ContextProvider, QueryProvider, ToastProvider } from '../providers'
+import { ContextProvider, QueryProvider, ToastProvider, ClientProvider } from '../providers'
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -21,7 +21,9 @@ export default function RootLayout({
         <ToastProvider />
         <QueryProvider>
           <ContextProvider>
-            {children}
+            <ClientProvider>
+              {children}
+            </ClientProvider>
           </ContextProvider>
         </QueryProvider>
       </body>

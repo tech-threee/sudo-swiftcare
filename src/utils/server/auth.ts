@@ -1,5 +1,7 @@
 import { ApiResponse, UserRes  } from "@/types";
 import Axios from "../axios"
+import axios from "axios";
+import { toast } from "sonner";
 
 
 type LoginUserInput = {
@@ -35,7 +37,16 @@ export const LOGIN_USER = async (info: LoginUserInput) => {
         });
 
         if (response.data.success) {
-            if (response.data.data.role === "SUDO") return response.data.data;
+            if (response.data.data.role === "IT") {
+                if (!!response.data.data.token) {
+                    axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.data.token}`;
+                }
+                return response.data.data;
+            } else {
+                
+                toast.error("You do not have access to this console")
+                throw new Error("You do not have access to this console")
+            }
         } else {
             throw new Error("oops");
         }
@@ -43,7 +54,6 @@ export const LOGIN_USER = async (info: LoginUserInput) => {
         throw error;
     }
 };
-
 export const RESET_PASSWORD = async (info: ResetPasswordInput) => {
     try {
         const response: ApiResponse<UserRes> = await Axios({
